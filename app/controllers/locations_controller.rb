@@ -5,7 +5,16 @@ class LocationsController < ApplicationController
   # GET /locations.json
   def index
     @locations = Location.all
-    @json = Location.all.to_gmaps4rails
+    #@json = Location.all.to_gmaps4rails
+
+    @json = Location.all.to_gmaps4rails do |device, marker|
+      color = "%06x" % (rand * 0xffffff)
+      marker.picture({
+        :picture => "http://www.googlemapsmarkers.com/v1/#{color}/",
+        :width   => 32,
+        :height  => 32
+      })
+    end
 
     respond_to do |format|
       format.html # index.html.erb
