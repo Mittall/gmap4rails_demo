@@ -6,10 +6,13 @@ gem 'rails', '4.1.4'
 
 gem 'gmaps4rails', '1.5.6'
 
-gem 'mysql2'
+group :development, :test do
+  gem 'sqlite3'
+end
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+group :production do
+  gem 'pg'
+end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
